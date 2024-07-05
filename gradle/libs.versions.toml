@@ -1,0 +1,10 @@
+[versions]
+annotations-ver = "24.0.0"
+gson-ver = "2.11.0"
+junit-platform-ver = "5.10.0"
+
+[libraries]
+annotations = { module = "org.jetbrains:annotations", version.ref = "annotations-ver"}
+gson = { module = "com.google.code.gson:gson", version.ref = "gson-ver" }
+junit-platform = { module = "org.junit:junit-bom", version.ref = "junit-platform-ver" }
+junit-jupiter = { module = "org.junit.jupiter:junit-jupiter" }
