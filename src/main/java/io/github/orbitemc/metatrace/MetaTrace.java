@@ -81,13 +81,16 @@ public final class MetaTrace {
      * Attempts to save the specified version to a file.
      *
      * @param version the version.
-     * @param path    the path to save to.
+     * @param file    the path to save to.
      * @throws IllegalStateException thrown if any exception regarding the IO occurs.
      */
-    public static void saveVersionToFile(@NotNull final MinecraftVersion version, @NotNull final Path path) throws IllegalStateException {
+    public static void saveVersionToFile(@NotNull final MinecraftVersion version, @NotNull final Path file) throws IllegalStateException {
         final String prettyJsonString = PRETTY_GSON.toJson(version, MinecraftVersion.class);
-        try (final var writer = Files.newBufferedWriter(path, StandardOpenOption.WRITE)) {
-            writer.write(prettyJsonString);
+        try {
+            createFileIfNotExists(file);
+            try (final var writer = Files.newBufferedWriter(file, StandardOpenOption.WRITE)) {
+                writer.write(prettyJsonString);
+            }
         } catch (IOException e) {
             throw new IllegalStateException(e);
         }
@@ -214,5 +217,16 @@ public final class MetaTrace {
         }
 
         return MetaTrace.GSON.fromJson(body, VersionManifest.class);
+    }
+
+    private static void createFileIfNotExists(@NotNull final Path path) {
+        if (Files.notExists(path.getParent())) {
+            try {
+                Files.createDirectories(path.getParent());
+                Files.createFile(path);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 }

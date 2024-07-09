@@ -3,6 +3,12 @@ plugins {
     `maven-publish`
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -19,7 +25,7 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("maven") {
-            this.groupId = "io.github.cabernetmc"
+            this.groupId = rootProject.group.toString()
             this.version = rootProject.version.toString()
             from(components["java"])
         }
