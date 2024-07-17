@@ -220,13 +220,15 @@ public final class MetaTrace {
     }
 
     private static void createFileIfNotExists(@NotNull final Path path) {
-        if (Files.notExists(path.getParent())) {
-            try {
+        try {
+            if (Files.notExists(path.getParent())) {
                 Files.createDirectories(path.getParent());
-                Files.createFile(path);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
             }
+            if (Files.notExists(path)) {
+                Files.createFile(path);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }
