@@ -5,6 +5,36 @@ converts it into easily digestible and understandable data objects.
 That can be used easily with other projects. It also provides some QOL
 functions regarding reading and writing this data to files.
 
+## Setup
+
+By default MetaTrace does **not** provide GSON, which it uses internally to process Json.
+MetaTrace uses the gson version `2.11.0`
+
+### Maven
+```xml
+<repository>
+  <id>miles-repos-snapshots</id>
+  <name>Miles Repositories</name>
+  <url>https://maven.miles.sh/snapshots</url>
+</repository>
+
+<dependency>
+  <groupId>sh.miles</groupId>
+  <artifactId>metatrace</artifactId>
+  <version>1.0.1-SNAPSHOT</version>
+</dependency>
+```
+
+### Gradle
+```kotlin
+maven {
+    name = "milesReposSnapshots"
+    url = uri("https://maven.miles.sh/snapshots")
+}
+
+implementation("sh.miles:metatrace:1.0.1-SNAPSHOT")
+```
+
 ## Usage
 
 Getting a version's metadata.

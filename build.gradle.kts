@@ -34,8 +34,8 @@ publishing {
     repositories {
         maven("https://maven.miles.sh/snapshots") {
             credentials {
-                this.username = System.getenv("CABERNETMC_REPOSILITE_USERNAME")
-                this.password = System.getenv("CABERNETMC_REPOSILITE_PASSWORD")
+                this.username = System.getenv("MILES_REPOSILITE_USERNAME")
+                this.password = System.getenv("MILES_REPOSILITE_PASSWORD")
             }
         }
     }
