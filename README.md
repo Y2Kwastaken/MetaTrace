@@ -47,7 +47,7 @@ Writing a version to a file.
 
 ```java
 final MinecraftVersion version = MetaTrace.getVersion("1.21");
-Cuvee.saveVersionToFile(version);
+MetaTrace.saveVersionToFile(version);
 ```
 
 Reading a version from file.
